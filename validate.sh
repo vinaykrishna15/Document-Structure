@@ -42,6 +42,13 @@ echo " "
 
 echo "Checking version number of Changelog.pdf"
 v=$(pdfgrep Version Changelog.pdf)
-echo "Changelog has the" $v
+echo "Changelog.pdf has the" $v
 echo " "
+echo " "
+
+echo "Checking version number of Manual.docx"
+./docx2txt.sh Manual.docx >/dev/null
+v=$(grep -A1 Version Manual.txt | xargs)
+echo "Manual.docx has the" $v
+rm Manual.txt
 echo " "
