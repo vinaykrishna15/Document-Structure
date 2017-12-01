@@ -9,6 +9,7 @@ type:
 sudo yum install epel-release
 
 yum install pdfgrep
+
 yum install unzip
 
 Go to your docx2txt-1.4/ folder and type:
