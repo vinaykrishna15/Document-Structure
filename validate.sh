@@ -47,8 +47,11 @@ echo " "
 echo " "
 
 echo "Checking version number of Manual.docx"
+tempfname=$(cat /dev/urandom | tr -cd 'a-z' | head -c 32)
+
 ./docx2txt.sh Manual.docx >/dev/null
-v=$(grep -A1 Version Manual.txt | xargs)
+mv Manual.txt $tempfname.txt
+v=$(grep -A1 Version $tempfname.txt | xargs)
 echo "Manual.docx has the" $v
-rm Manual.txt
+rm $tempfname.txt
 echo " "
