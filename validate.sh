@@ -3,7 +3,9 @@
 echo " "
 echo "validating folders"
 echo "--------"
-cd Document/\2017-11-06\
+#read -p "Enter path of the folder to validate:" fpath
+#cd Document/\2017-11-06\
+cd $1
 
 declare -a folders=("Software Capacity" "Software Daisy" "Software Endamo" "Software NCG" "Software RWIN")
 
@@ -19,7 +21,10 @@ fi
    # or do whatever with individual element of the array
 done
 
-cd Software\ Capacity/V1.1.0/
+
+cd */*
+#cd Software\ Capacity/V1.1.0/
+#cd $2
 echo "--------"
 echo "validating files"
 echo "-------"
