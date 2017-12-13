@@ -22,8 +22,13 @@ fi
 done
 
 
-cd */*
-#cd Software\ Capacity/V1.1.0/
+cd */
+
+cd $(ls | sort -r -n | head -1)
+#cd $(ls -t | head -1)
+
+#cd Software\ Capacity/
+#cd $(ls -t | head -1)
 #cd $2
 echo "--------"
 echo "validating files"
