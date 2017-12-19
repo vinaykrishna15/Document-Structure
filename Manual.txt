@@ -1,0 +1,10 @@
+Version
+1.1.4
+Date
+2017-09-27
+Name
+Manual
+
+Manual
+The project is using Vagrant, which automates 2 VMs. These VMs run a batch file, which validates the folder structure. By using linux commands one can handle the linux environment.
+v1.1.0

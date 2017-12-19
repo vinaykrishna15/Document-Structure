@@ -6,7 +6,11 @@ echo "--------"
 #read -p "Enter path of the folder to validate:" fpath
 #cd Document/\2017-11-06\
 cd $1
-
+#go to the folder with the highest date
+highestDate=$(ls | sort -r -n | head -1)
+cd $highestDate
+echo "Checking folder: "  $highestDate
+echo " "
 declare -a folders=("Software Capacity" "Software Daisy" "Software Endamo" "Software NCG" "Software RWIN")
 
 ## now loop through the above array
@@ -24,7 +28,9 @@ done
 
 cd */
 
-cd $(ls | sort -r -n | head -1)
+highestVersionNumber=$(ls | sort -r -n | head -1)
+cd $highestVersionNumber
+
 #cd $(ls -t | head -1)
 
 #cd Software\ Capacity/
@@ -33,6 +39,8 @@ cd $(ls | sort -r -n | head -1)
 echo "--------"
 echo "validating files"
 echo "-------"
+echo "Checking folder: " $highestVersionNumber
+echo " "
 declare -a files=("Changelog.docx" "Manual.docx" "Runbooks.docx" "Environment description.docx")
 
 ## now loop through the above array
@@ -53,6 +61,19 @@ echo " "
 echo "Checking version number of Changelog.pdf"
 v=$(pdfgrep Version Changelog.pdf)
 echo "Changelog.pdf has the" $v
+
+#pdfgrep Version Changelog.pdf | sed 's/Version /V/'
+versionShort=$(sed 's/Version /V/' <<< $v)
+
+if [ "$highestVersionNumber" == "$versionShort" ]
+then
+echo "Folder version number equals file version number"
+else
+echo "Folder version number doesn't match file version number"
+echo "FolderVN = $highestVersionNumber"
+echo "FileVN   = $versionShort"
+fi
+
 echo " "
 echo " "
 
@@ -64,4 +85,16 @@ mv Manual.txt $tempfname.txt
 v=$(grep -A1 Version $tempfname.txt | xargs)
 echo "Manual.docx has the" $v
 rm $tempfname.txt
+
+versionShort=$(sed 's/Version /V/' <<< $v)
+
+if [ "$highestVersionNumber" == "$versionShort" ]
+then
+echo "Folder version number equals file version number"
+else
+echo "Folder version number doesn't match file version number"
+echo "FolderVN = $highestVersionNumber"
+echo "FileVN   = $versionShort"
+fi
+
 echo " "
