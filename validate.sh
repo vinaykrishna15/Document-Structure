@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo " "
+echo "--------"
 echo "validating folders"
 echo "--------"
 #read -p "Enter path of the folder to validate:" fpath
@@ -36,6 +37,7 @@ cd $highestVersionNumber
 #cd Software\ Capacity/
 #cd $(ls -t | head -1)
 #cd $2
+echo " "
 echo "--------"
 echo "validating files"
 echo "-------"
